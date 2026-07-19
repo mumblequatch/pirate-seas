@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pirate Seas — designed by Benjamin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..800,50,1&family=Karla:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sunlit:#7fd4cd;
+    --shallow:#2f8fa8;
+    --deep:#14456b;
+    --trench:#0a1b33;
+    --abyss:#050b16;
+    --pearl:#f4f0e8;
+    --pearl-dim:#b9c6cf;
+    --lure:#f5c451;
+    --display:"Fraunces",Georgia,"Times New Roman",serif;
+    --body:"Karla","Helvetica Neue",Arial,sans-serif;
+  }
+
+  *{box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    font-family:var(--body);
+    font-weight:300;
+    font-size:clamp(1.02rem,0.95rem + 0.35vw,1.18rem);
+    line-height:1.72;
+    color:var(--pearl);
+    background:var(--abyss);
+    background-image:linear-gradient(
+      to bottom,
+      var(--sunlit) 0%,
+      var(--shallow) 12%,
+      var(--deep) 34%,
+      var(--trench) 62%,
+      var(--abyss) 78%,
+      var(--abyss) 92%,
+      var(--deep) 100%
+    );
+    background-attachment:fixed;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{
+    max-width:39rem;
+    margin:0 auto;
+    padding:0 1.5rem 6rem;
+  }
+
+  /* ---- hero ---- */
+  header{
+    padding:clamp(4rem,14vh,9rem) 0 clamp(3rem,8vh,5rem);
+    color:var(--trench);
+  }
+
+  .eyebrow{
+    font-size:.72rem;
+    font-weight:600;
+    letter-spacing:.19em;
+    text-transform:uppercase;
+    color:rgba(10,27,51,.62);
+    margin:0 0 1.4rem;
+  }
+
+  h1{
+    font-family:var(--display);
+    font-variation-settings:"SOFT" 50,"WONK" 1,"opsz" 120;
+    font-weight:500;
+    font-size:clamp(3.1rem,2rem + 9vw,6rem);
+    line-height:.92;
+    letter-spacing:-.025em;
+    margin:0 0 1.6rem;
+    color:var(--abyss);
+  }
+
+  .thesis{
+    font-size:clamp(1.12rem,1rem + 0.6vw,1.35rem);
+    line-height:1.55;
+    max-width:26rem;
+    color:rgba(5,11,22,.78);
+    margin:0;
+  }
+
+  .byline{
+    margin:2.4rem 0 0;
+    font-size:.82rem;
+    letter-spacing:.06em;
+    color:rgba(10,27,51,.6);
+  }
+
+  /* ---- depth rail ---- */
+  .rail{
+    position:fixed;
+    left:max(1rem,calc(50vw - 22.5rem));
+    top:0;
+    bottom:0;
+    width:1px;
+    background:linear-gradient(to bottom,transparent,rgba(244,240,232,.16) 18%,rgba(244,240,232,.16) 82%,transparent);
+    pointer-events:none;
+    z-index:2;
+  }
+  .rail::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:var(--pearl-pos,0%);
+    width:9px;height:9px;
+    margin-left:-4.5px;margin-top:-4.5px;
+    border-radius:50%;
+    background:radial-gradient(circle at 34% 30%,#fff,var(--pearl) 42%,#9fb4c2 100%);
+    box-shadow:0 0 12px 2px rgba(255,255,255,.35);
+  }
+  @media (max-width:56rem){ .rail{display:none;} }
+
+  /* ---- sections ---- */
+  section{ padding:clamp(2rem,6vh,3.4rem) 0; }
+
+  h2{
+    font-family:var(--display);
+    font-variation-settings:"SOFT" 50,"WONK" 1,"opsz" 40;
+    font-weight:400;
+    font-size:clamp(1.55rem,1.2rem + 1.6vw,2.15rem);
+    line-height:1.15;
+    letter-spacing:-.015em;
+    margin:0 0 1.4rem;
+  }
+
+  p{ margin:0 0 1.35rem; }
+  p:last-child{ margin-bottom:0; }
+
+  em{ font-style:italic; }
+
+  .lede{
+    color:rgba(10,27,51,.85);
+  }
+
+  /* pearl markers — the seven are a real sequence, so they're counted */
+  .pearl-mark{
+    display:flex;
+    align-items:center;
+    gap:.85rem;
+    margin:0 0 1.1rem;
+    font-size:.7rem;
+    font-weight:600;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--pearl-dim);
+  }
+  .pearl-mark::before{
+    content:"";
+    flex:0 0 auto;
+    width:8px;height:8px;
+    border-radius:50%;
+    background:radial-gradient(circle at 34% 30%,#fff,var(--pearl) 45%,#8ea6b6 100%);
+    box-shadow:0 0 9px rgba(255,255,255,.4);
+  }
+  .pearl-mark::after{
+    content:"";
+    flex:1 1 auto;
+    height:1px;
+    background:linear-gradient(to right,rgba(244,240,232,.22),transparent);
+  }
+
+  /* the trench */
+  .trench h2{ color:var(--pearl); }
+
+  .lure{
+    color:var(--lure);
+    font-style:italic;
+  }
+
+  .lure-moment{
+    margin:2.6rem 0;
+    padding:2.2rem 1.6rem;
+    text-align:center;
+    border-radius:2px;
+    background:radial-gradient(ellipse at center,rgba(245,196,81,.14),transparent 72%);
+  }
+  .lure-moment span{
+    display:block;
+    font-family:var(--display);
+    font-variation-settings:"SOFT" 60,"WONK" 1,"opsz" 60;
+    font-size:clamp(1.35rem,1.1rem + 1.4vw,1.85rem);
+    line-height:1.3;
+    color:var(--lure);
+    text-shadow:0 0 26px rgba(245,196,81,.45);
+  }
+
+  /* closing card */
+  .worked-out{
+    margin-top:3rem;
+    padding:2rem 1.75rem;
+    border:1px solid rgba(244,240,232,.18);
+    border-radius:3px;
+    background:rgba(244,240,232,.05);
+  }
+  .worked-out h2{ font-size:1.3rem; margin-bottom:1.1rem; }
+  .worked-out p{ font-size:.98rem; }
+
+  blockquote{
+    margin:0 0 1.35rem;
+    padding-left:1.1rem;
+    border-left:2px solid var(--lure);
+    font-family:var(--display);
+    font-variation-settings:"SOFT" 60,"WONK" 1,"opsz" 30;
+    font-size:1.06rem;
+    line-height:1.5;
+    color:var(--pearl);
+  }
+
+  footer{
+    padding-top:3rem;
+    font-size:.78rem;
+    letter-spacing:.08em;
+    color:rgba(244,240,232,.5);
+    text-align:center;
+  }
+
+  /* reveal */
+  .reveal{
+    opacity:0;
+    transform:translateY(14px);
+    transition:opacity .8s ease,transform .8s ease;
+  }
+  .reveal.in{ opacity:1; transform:none; }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    .reveal{opacity:1;transform:none;transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="rail" aria-hidden="true"></div>
+
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">A Puzzleworld level</p>
+    <h1>Pirate&nbsp;Seas</h1>
+    <p class="thesis">Seven lost pearls, an eel in an eyepatch, and a monster at the bottom of the sea who turns out to be afraid of a fish the size of your hand.</p>
+    <p class="byline">Designed by Benjamin — July 19, 2026</p>
+  </header>
+
+  <section class="reveal">
+    <h2>The setup</h2>
+    <p>Pirate Seas runs backwards from every pirate story. Instead of taking treasure, Benjamin fills a chest with things he gathers for other people. A clam has lost seven pearls to other sea creatures, and getting them back is the spine of the level — which means finding out <em>why</em> each one was taken.</p>
+  </section>
+
+  <section class="reveal">
+    <p class="pearl-mark">Pearls one, two, three</p>
+    <h2>The shallows</h2>
+    <p>The first two are easy: one sitting in an open shell, one being used as a ball by a little fish who'll hand it over if you play with her first. Then Benjamin spots a shark in the distance, chewing a pearl like a jawbreaker — and decides he isn't ready, and keeps swimming.</p>
+  </section>
+
+  <section class="reveal">
+    <p class="pearl-mark">Pearl four</p>
+    <h2>The eel</h2>
+    <p>The fourth pearl belongs to an eel missing an eye, who's wearing it in the socket to hide being ugly. You can't just take it — he needs it. So you find him an eyepatch in a sunken ship, and he stops feeling ugly and starts feeling like a pirate, and hands the pearl over happily.</p>
+    <p>In his cave there's also a mirror. Benjamin borrows it.</p>
+  </section>
+
+  <section class="reveal">
+    <p class="pearl-mark">Pearl five</p>
+    <h2>The shark</h2>
+    <p>Then he goes back. Remembering the fable of the fox and the cheese, he holds up the mirror and waits. The shark sees "another shark" with a pearl, decides he wants that one too, swims at it full speed, and knocks himself out cold. Benjamin grabs the pearl, sets the mirror on the shark's head to weigh him down, and speeds away.</p>
+  </section>
+
+  <section class="reveal">
+    <p class="pearl-mark">Pearl six</p>
+    <h2>The dolphin</h2>
+    <p>The sixth is a breath: a dolphin who simply gives it back. She's not hiding anything or holding it hostage — she found it deep down and was already bringing it to him. On her way off she mentions, casually, that there's something crying down there.</p>
+  </section>
+
+  <section class="trench reveal">
+    <p class="pearl-mark">Pearl seven</p>
+    <h2>The bottom of the sea</h2>
+    <p>There's been a storm on the horizon the whole level. It isn't weather. At the bottom of the trench is a baby kraken — bigger than the ship, completely alone, crying so hard it's been making the storm the entire time.</p>
+    <p>It's afraid of an anglerfish swallowing it. But down there it's pitch black, so all it's ever seen is <span class="lure">the light on the lure</span> — never the fish. The biggest creature in the game has spent its life hiding from something the size of your hand.</p>
+    <p>You can't outsmart it or hand it an object. You need light. So Benjamin swims back and retrieves the mirror off the shark's head, takes it down into the dark, and catches the anglerfish's own light and turns it around.</p>
+
+    <div class="lure-moment">
+      <span>For one second everything is visible,<br>and it's a small fish with a silly light on a stick,<br>blinking in confusion.</span>
+    </div>
+
+    <p>The kraken stares for a long moment. Then it laughs, and the sound shakes the water. And <em>that's</em> when the storm stops — not when it gets brave, when it laughs. Miles above, the clouds break and the sea goes gold, and every creature Benjamin has met looks up at once.</p>
+  </section>
+
+  <section class="reveal">
+    <h2>The ending</h2>
+    <p>The kraken mentions that someone used to keep it company down there — an old octopus in a cave, who stopped coming. Benjamin finds him: grumpy, yelling at everyone, his cave full of other people's lost things.</p>
+    <p>He wasn't stealing to be bad. Collecting was the only way he didn't feel alone. So instead of bringing him a thing, Benjamin brings him the creatures he took from — and they come and say hello. And that's when he hands over the last treasure.</p>
+
+    <div class="worked-out">
+      <h2>What Benjamin worked out on his own</h2>
+      <p>He chose to make the eyepatch easy to find, because:</p>
+      <blockquote>"It would be too difficult for kids to have too many difficult puzzles and they'd get frustrated."</blockquote>
+      <p>He set up the shark before the fight, so there'd be a worry humming under the eel puzzle. He built the eel's reward into the shark's solution. And he twice told me I was wrong about the structure — the octopus belongs at the end, not the beginning, and pearl six should be a dolphin — and he was right both times.</p>
+    </div>
+  </section>
+
+  <footer>Puzzleworld · Level 4 of 5</footer>
+
+</div>
+
+<script>
+  // Depth pearl tracks scroll position down the rail.
+  var rail = document.querySelector('.rail');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function onScroll(){
+    var max = document.body.scrollHeight - window.innerHeight;
+    var pct = max > 0 ? (window.scrollY / max) * 100 : 0;
+    rail.style.setProperty('--pearl-pos', pct.toFixed(2) + '%');
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  // Scroll-triggered reveals.
+  if (!reduce && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+</script>
+
+</body>
+</html>
